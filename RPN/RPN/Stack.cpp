@@ -1,5 +1,9 @@
+#include <algorithm>
 #include "Stack.h"
 #include "stack_overflow.h"
+
+// TODO
+// Get rid of vectors - replace it with dynamic array
 
 Stack::Stack() : content { }
 { }
@@ -33,9 +37,13 @@ char Stack::peek()
     return content.back();
 }
 
-void Stack::search()
+int Stack::search(char val)
 {
-
+    auto it = std::find(content.begin(), content.end(), val);
+    if (it != content.end()) {
+        return std::distance(content.begin(), it) + 1;
+    }
+    throw std::exception("e"); /*throw no_element_found*/
 }
 
 bool Stack::isEmpty()
@@ -55,7 +63,11 @@ void Stack::clear()
 
 Stack Stack::copyStack() const
 {
-    return Stack();
+    Stack* newStack = new Stack;
+
+    for (char v : content) newStack->push(v);
+
+    return *newStack;
 }
 
 Stack& Stack::operator=(const Stack& other)
