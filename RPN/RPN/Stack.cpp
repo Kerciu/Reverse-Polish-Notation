@@ -1,7 +1,9 @@
 #include "Stack.h"
+#include "stack_overflow.h"
 
 Stack::Stack() : content { }
 { }
+
 bool Stack::checkIfOverflown(int stackSize)
 {
     return (stackSize >= 1000);
@@ -17,6 +19,7 @@ char Stack::pop()
     if (content.empty()) {
         throw std::exception("e");  /*throw stack_empty("Stack is empty!");*/
     }
+    if (checkIfOverflown(content.size())) throw stack_overflow("Stack overflow!");
 
     char lastElem = content.back();
     content.pop_back();
@@ -25,26 +28,29 @@ char Stack::pop()
     return lastElem;
 }
 
-void Stack::peek()
+char Stack::peek()
 {
+    return content.back();
 }
 
 void Stack::search()
 {
+
 }
 
 bool Stack::isEmpty()
 {
-    return false;
+    return content.empty();
 }
 
 size_t Stack::size()
 {
-    return size_t();
+    return content.size();
 }
 
 void Stack::clear()
 {
+    content.clear();
 }
 
 Stack Stack::copyStack() const
@@ -54,7 +60,11 @@ Stack Stack::copyStack() const
 
 Stack& Stack::operator=(const Stack& other)
 {
-    // TODO: tu wstawiæ instrukcjê return
+    if (&other != this) {
+        this->content.clear();
+        this->content = other.content;
+    }
+    return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Stack& stack)

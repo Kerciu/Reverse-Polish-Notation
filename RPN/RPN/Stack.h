@@ -16,7 +16,7 @@ public:
 
 	void push(char elem);
 	char pop();
-	void peek();
+	char peek();
 	void search();
 	bool isEmpty();
 	size_t size();
