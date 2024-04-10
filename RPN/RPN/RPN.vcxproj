@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Handler.cpp" />
+    <ClCompile Include="Operator.cpp" />
     <ClCompile Include="RPN.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="stack_overflow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Handler.h" />
+    <ClInclude Include="Operator.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="stack_overflow.h" />
   </ItemGroup>
