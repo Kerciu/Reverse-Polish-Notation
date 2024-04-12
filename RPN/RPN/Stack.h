@@ -10,6 +10,7 @@ private:
 	bool checkIfOverflown(int stackSize);
 
 	friend std::ostream& operator<<(std::ostream& os, const Stack& stack);
+	friend class Handler;
 
 public:
 	Stack();
