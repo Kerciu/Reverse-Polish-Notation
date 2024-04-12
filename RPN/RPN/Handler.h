@@ -9,6 +9,9 @@ class Handler
 private:
 	std::string expression;
 
+	int calculateStringLength(std::string str);
+	bool checkIfCorrectExpression(std::string express);
+
 	bool checkIfDigit(const char& ch);
 	bool checkIfOperator(const char& ch);
 
@@ -18,7 +21,7 @@ public:
 	Handler();
 	Handler(std::string express);
 
-	void stackifyExpression(Stack& stack);
+	int stackifyExpression(Stack& stack);
 
 };
 

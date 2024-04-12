@@ -34,15 +34,19 @@ char Stack::pop()
 
 char Stack::peek()
 {
+    if (content.empty()) throw std::out_of_range("Stack is empty!");
     return content.back();
 }
 
 int Stack::search(char val)
 {
+    if (content.empty()) throw std::out_of_range("Stack is empty!");
+
     auto it = std::find(content.begin(), content.end(), val);
     if (it != content.end()) {
         return std::distance(content.begin(), it) + 1;
     }
+
     throw std::exception("e"); /*throw no_element_found*/
 }
 

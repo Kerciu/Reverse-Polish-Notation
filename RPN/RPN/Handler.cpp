@@ -7,12 +7,20 @@ Handler::Handler() : expression("") { }
 
 Handler::Handler(std::string express) : expression(express) { }
 
-bool checkIfCorrectExpression(std::string express) {
+int Handler::calculateStringLength(std::string str) {
+    int count = 0;
+    for (const char& ch : str) {
+        count++;
+    }
+    return count;
+}
+
+bool Handler::checkIfCorrectExpression(std::string express) {
     std::string correctChars = "0123456789 +-*/%^";
     for (const char& ch : express) {
-        if (std::find(correctChars.begin(), correctChars.end(), ch) != correctChars.end()) return true;
+        if (std::find(correctChars.begin(), correctChars.end(), ch) != correctChars.end()) return false;
     }
-    return false;
+    return true;
 }
 
 bool Handler::checkIfDigit(const char& ch) {
@@ -25,12 +33,19 @@ bool Handler::checkIfOperator(const char& ch) {
     return std::find(operators.begin(), operators.end(), ch) != operators.end();
 }
 
-void Handler::stackifyExpression(Stack& stack)
+int Handler::stackifyExpression(Stack& stack)
 {
     std::vector<int> setToCompute;
     Operator oper;
+    int lenOfExpression = calculateStringLength(expression);
+
+    if (expression.empty()) throw std::out_of_range("Cannot compute empty expressions");
+
+    if (!checkIfCorrectExpression(expression)) throw std::out_of_range("Incorrect expression!");
+
+
     // Add digits and their operators to the new set
-    for (int i = 0; i < stack.size(); i++) {
+    for (int i = 0; i < lenOfExpression; i++) {
         char ch = expression[i];
 
         if (checkIfDigit(ch)) {
@@ -38,14 +53,24 @@ void Handler::stackifyExpression(Stack& stack)
         }
         else if (checkIfOperator(ch)) {
 
-            int operand1 = stack.pop();
-            int operand2 = stack.pop();
+            if (stack.size() < 2) {
+                // For now throw error
+                throw std::out_of_range("Insufficient arguments!");
+            }
+            else
+            {
+                if (stack.isEmpty()) throw std::out_of_range("Stack is empty!");
+                int operand2 = stack.pop();
+                if (stack.isEmpty()) throw std::out_of_range("Stack is empty!");
+                int operand1 = stack.pop();
 
-            int result = oper.handleOperator(operand1, operand2);
+                int result = oper.handleOperator(operand1, operand2);
 
-            stack.push(result);
+                stack.push(result);
+            }
         }
     }
+    return stack.peek();
 }
 
 std::istream& operator>>(std::istream & is, Handler & h)

@@ -10,7 +10,7 @@ int main()
     std::string expression;
     std::cin >> handler;
 
-    handler.stackifyExpression(stack);
+    int result = handler.stackifyExpression(stack);
 
-    std::cout << stack.peek();
+    std::cout << result;
 }

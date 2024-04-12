@@ -26,6 +26,9 @@ void Operator::setOperator(const char& newOp) {
 int Operator::handleOperator(int operand1, int operand2)
 {
 	int computeResult = 0;
+
+	if (operand2 == 0) throw std::out_of_range("Zero division!!");
+
 	switch (oper)
 	{
 	case '+':
