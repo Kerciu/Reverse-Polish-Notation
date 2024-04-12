@@ -1,43 +1,50 @@
+#include <cmath>
 #include "Operator.h"
+#include <stdexcept>
 
-Operator::Operator(const char& op) : oper(op) { }
+Operator::Operator() : oper('+') { }
+
+Operator::Operator(const char& op) : oper(op)
+{
+	if (!validateOperator(op)) throw std::out_of_range("This is not an operator!");
+}
 
 bool Operator::validateOperator(const char& op) const 
 {
 	return (op == '+' || op == '-' || op == '*' || op == '/' || op == '%');
 }
 
-int Operator::handleOperator(std::vector<int> setToCompute)
+char Operator::getOperator(void) const
+{
+	return oper;
+}
+
+void Operator::setOperator(const char& newOp) {
+	if (validateOperator(newOp)) oper = newOp;
+}
+
+int Operator::handleOperator(int operand1, int operand2)
 {
 	int computeResult = 0;
 	switch (oper)
 	{
 	case '+':
-
-		for (const int& elem : setToCompute) {
-			computeResult += elem;
-		}
+		computeResult = operand1 + operand2;
 		break;
 	case '-':
-		for (const int& elem : setToCompute) {
-			computeResult -= elem;
-		}
+		computeResult = operand1 - operand2;
 		break;
 	case '*':
-		for (const int& elem : setToCompute) {
-			computeResult *= elem;
-		}
+		computeResult = operand1 * operand2;
 		break;
 	case '/':
-		for (const int& elem : setToCompute) {
-			computeResult /= elem;
-		}
+		computeResult = operand1 / operand2;
 		break;
 	case '%':
-		for (const int& elem : setToCompute) {
-			computeResult %= elem;
-		}
+		computeResult = operand1 % operand2;
 		break;
+	case '^':
+		computeResult = std::pow(operand1, operand2);
 	default:
 		break;
 	}
