@@ -7,7 +7,7 @@ int main()
     Handler handler;
     Stack stack;
 
-    std::string expression;
+    std::string input;
     std::cin >> handler;
 
     int result = handler.stackifyExpression(stack);
