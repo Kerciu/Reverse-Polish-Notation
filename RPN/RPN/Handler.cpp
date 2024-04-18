@@ -18,7 +18,7 @@ int Handler::calculateStringLength(std::string str) {
 bool Handler::checkIfCorrectExpression(std::string express) {
     std::string correctChars = "0123456789 +-*/%^";
     for (const char& ch : express) {
-        if (std::find(correctChars.begin(), correctChars.end(), ch) != correctChars.end()) return false;
+        if (std::find(correctChars.begin(), correctChars.end(), ch) == correctChars.end()) return false;
     }
     return true;
 }
@@ -29,7 +29,7 @@ bool Handler::checkIfDigit(const char& ch) {
 }
 
 bool Handler::checkIfOperator(const char& ch) {
-    std::string operators = "+-*/%";
+    std::string operators = "+-*/%^";
     return std::find(operators.begin(), operators.end(), ch) != operators.end();
 }
 
@@ -49,16 +49,19 @@ int Handler::stackifyExpression(Stack& stack)
         char ch = expression[i];
 
         if (checkIfDigit(ch)) {
-            stack.push(ch - '0');
+            int digitToPush = ch - '0';
+            stack.push(digitToPush);
         }
         else if (checkIfOperator(ch)) {
 
-            if (stack.size() < 2) {
+            if (stack.size() < 1) {
                 // For now throw error
                 throw std::out_of_range("Insufficient arguments!");
             }
-            else
-            {
+           
+            else if (stack.size() > 1)
+            {   
+                oper.setOperator(ch);
                 if (stack.isEmpty()) throw std::out_of_range("Stack is empty!");
                 int operand2 = stack.pop();
                 if (stack.isEmpty()) throw std::out_of_range("Stack is empty!");
