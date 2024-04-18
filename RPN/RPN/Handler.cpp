@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "exceptions.h"
 #include "Handler.h"
 #include "Operator.h"
 
@@ -39,9 +40,9 @@ int Handler::stackifyExpression(Stack& stack)
     Operator oper;
     int lenOfExpression = calculateStringLength(expression);
 
-    if (expression.empty()) throw std::out_of_range("Cannot compute empty expressions");
+    if (expression.empty()) throw empty_expression("Cannot compute empty expressions");
 
-    if (!checkIfCorrectExpression(expression)) throw std::out_of_range("Incorrect expression!");
+    if (!checkIfCorrectExpression(expression)) throw incorrect_expression("Incorrect expression!");
 
 
     // Add digits and their operators to the new set
@@ -55,16 +56,15 @@ int Handler::stackifyExpression(Stack& stack)
         else if (checkIfOperator(ch)) {
 
             if (stack.size() < 1) {
-                // For now throw error
-                throw std::out_of_range("Insufficient arguments!");
+                throw insufficient_arguments("Insufficient arguments!");
             }
            
             else if (stack.size() > 1)
             {   
                 oper.setOperator(ch);
-                if (stack.isEmpty()) throw std::out_of_range("Stack is empty!");
+                if (stack.isEmpty()) throw stack_underflow("Stack underflow!");
                 int operand2 = stack.pop();
-                if (stack.isEmpty()) throw std::out_of_range("Stack is empty!");
+                if (stack.isEmpty()) throw stack_underflow("Stack underflow!");
                 int operand1 = stack.pop();
 
                 int result = oper.handleOperator(operand1, operand2);

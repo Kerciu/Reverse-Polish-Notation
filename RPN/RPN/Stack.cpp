@@ -1,6 +1,6 @@
 #include <algorithm>
 #include "Stack.h"
-#include "stack_overflow.h"
+#include "exceptions.h"
 
 // TODO
 // Get rid of vectors - replace it with dynamic array
@@ -34,20 +34,20 @@ char Stack::pop()
 
 char Stack::peek()
 {
-    if (content.empty()) throw std::out_of_range("Stack is empty!");
+    if (content.empty()) throw stack_underflow("Stack is empty!");
     return content.back();
 }
 
 int Stack::search(char val)
 {
-    if (content.empty()) throw std::out_of_range("Stack is empty!");
+    if (content.empty()) throw stack_underflow("Stack is empty!");
 
     auto it = std::find(content.begin(), content.end(), val);
     if (it != content.end()) {
         return std::distance(content.begin(), it) + 1;
     }
 
-    throw std::exception("e"); /*throw no_element_found*/
+    throw no_element_found("No such element found...");
 }
 
 bool Stack::isEmpty()

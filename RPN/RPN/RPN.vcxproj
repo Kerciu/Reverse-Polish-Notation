@@ -131,13 +131,13 @@
     <ClCompile Include="Operator.cpp" />
     <ClCompile Include="RPN.cpp" />
     <ClCompile Include="Stack.cpp" />
-    <ClCompile Include="stack_overflow.cpp" />
+    <ClCompile Include="exceptions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Handler.h" />
     <ClInclude Include="Operator.h" />
     <ClInclude Include="Stack.h" />
-    <ClInclude Include="stack_overflow.h" />
+    <ClInclude Include="exceptions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

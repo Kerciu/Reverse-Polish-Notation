@@ -1,12 +1,13 @@
 #include <cmath>
 #include "Operator.h"
+#include "exceptions.h"
 #include <stdexcept>
 
 Operator::Operator() : oper('+') { }
 
 Operator::Operator(const char& op) : oper(op)
 {
-	if (!validateOperator(op)) throw std::out_of_range("This is not an operator!");
+	if (!validateOperator(op)) throw wrong_operator("This is not an operator!");
 }
 
 bool Operator::validateOperator(const char& op) const 
@@ -27,7 +28,7 @@ int Operator::handleOperator(int operand1, int operand2)
 {
 	int computeResult = 0;
 
-	if (operand2 == 0) throw std::out_of_range("Zero division!!");
+	if (operand2 == 0) throw zero_division_error("Zero division!!");
 
 	switch (oper)
 	{

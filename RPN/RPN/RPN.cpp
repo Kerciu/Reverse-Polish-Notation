@@ -4,13 +4,18 @@
 
 int main()
 {
-    Handler handler;
-    Stack stack;
+    try {
+        Handler handler;
+        Stack stack;
 
-    std::string input;
-    std::cin >> handler;
+        std::string input;
+        std::cin >> handler;
 
-    int result = handler.stackifyExpression(stack);
+        int result = handler.stackifyExpression(stack);
 
-    std::cout << result;
+        std::cout << result;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << '\n';
+    }
 }

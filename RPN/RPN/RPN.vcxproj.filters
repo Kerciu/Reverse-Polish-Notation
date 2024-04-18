@@ -21,7 +21,7 @@
     <ClCompile Include="Stack.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="stack_overflow.cpp">
+    <ClCompile Include="exceptions.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Handler.cpp">
@@ -35,7 +35,7 @@
     <ClInclude Include="Stack.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="stack_overflow.h">
+    <ClInclude Include="exceptions.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Handler.h">
