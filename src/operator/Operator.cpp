@@ -1,6 +1,6 @@
 #include <cmath>
 #include "Operator.h"
-#include "exceptions.h"
+#include "../exceptions/exceptions.h"
 #include <stdexcept>
 
 Operator::Operator() : oper('+') { }

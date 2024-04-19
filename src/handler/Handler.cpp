@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "exceptions.h"
-#include "Handler.h"
-#include "Operator.h"
+#include "../exceptions/exceptions.h"
+#include "../handler/Handler.h"
+#include "../operator/Operator.h"
 
 Handler::Handler() : expression("") { }
 

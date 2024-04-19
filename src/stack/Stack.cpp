@@ -1,6 +1,6 @@
 #include <algorithm>
 #include "Stack.h"
-#include "exceptions.h"
+#include "../exceptions/exceptions.h"
 
 // TODO
 // Get rid of vectors - replace it with dynamic array

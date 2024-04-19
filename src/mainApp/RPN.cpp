@@ -1,6 +1,6 @@
 ﻿#include <iostream>
-#include "Handler.h"
-#include "stack.h"
+#include "../handler/Handler.h"
+#include "../stack/stack.h"
 
 int main()
 {
